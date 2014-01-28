@@ -1,0 +1,30 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} !^www.vman.info$ [NC]
+RewriteCond %{REQUEST_URI} !^/cron(/?$|/.*$)
+RewriteRule ^(.*)$ http://www.vman.info/$1 [L,R=301]
+
+RewriteRule ^(klub|klubber|club|clubs)/([0-9]+)-(.*).html$			index.php?cid=$2 [L,QSA]
+RewriteRule ^(spiller|player|players)/(.*)-(.*).html$				index.php?pid=$2 [L,QSA]
+
+RewriteRule ^(home|forside)$										index.php?front=true [L,QSA]
+RewriteRule ^stats$													index.php?stats=true [L,QSA]
+RewriteRule ^notes/edit$											notes.php?edit=true [L,QSA]
+RewriteRule ^notes$													notes.php [L,QSA]
+RewriteRule ^development/(.*)$										development.php?did=$1 [L,QSA]
+RewriteRule ^development$											development.php [L,QSA]
+RewriteRule ^settings$												settings.php [L,QSA]
+RewriteRule ^(klub|klubber|club|clubs)/(.*)/export$					export/export.php?cid=$2 [L,QSA]
+RewriteRule ^(klub|klubber|club|clubs)/(.*)/history$				index.php?cid=$2&history=true [L,QSA]
+RewriteRule ^(klub|klubber|club|clubs)/(.*)/(.*)/(asc|desc)$		index.php?cid=$2&sort=$3&order=$4 [L,QSA]
+RewriteRule ^(klub|klubber|club|clubs)/(.*)$						index.php?cid=$2 [L,QSA]
+RewriteRule ^(spiller|player|players)/(.*)/history$					index.php?pid=$2&history=true [L,QSA]
+RewriteRule ^(spiller|player|players)/(.*)$							index.php?pid=$2 [L,QSA]
+RewriteRule ^(find|search)/(.*)$									search.php?q=$2 [L,QSA]
+
+RewriteRule ^sitemap_clubs.xml$										sitemap.php?type=clubs [L]
+RewriteRule ^sitemap_clubs_([0-9]+).xml$							sitemap.php?type=clubs&view=$1 [L]
+RewriteRule ^sitemap_players.xml$									sitemap.php?type=players [L]
+RewriteRule ^sitemap_players_([0-9]+).xml$							sitemap.php?type=players&view=$1 [L]
+
+RewriteRule ^(da|en)/(.*)$											$2?lang=$1 [L,QSA]
