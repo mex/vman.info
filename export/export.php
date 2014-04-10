@@ -7,8 +7,8 @@ function entity($str) {
 	return str_replace($from,$to,$str);
 }
 
-$db = mysql_connect('mysql2.gigahost.dk','ejsing','X8cETR6br5nu4eBru93drupr');
-mysql_select_db('ejsing_vman',$db);
+$db = mysql_connect('','','');
+mysql_select_db('',$db);
 
 $cid = (strlen($_GET['cid']) > 0 ? $_GET['cid'] : '');
 
